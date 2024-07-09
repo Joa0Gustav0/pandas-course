@@ -3,7 +3,8 @@ import pandas as pd;
 
 #KNOWING A DATASET 💡
 
-#Then, we read our csv, excel and any files ==> pd.read_x("filepath", sep="separator_type")  
+#Then, we read our csv, excel and any files ==> pd.read_x("filepath", sep="separator_type")
+#By default the csv separator type is a comma ",".  
 worksheet = pd.read_csv("./worksheets/GasPricesinBrazil_2004-2019.csv", sep=";");
 
 #".head(n)" is a function for RETURNING a certain quantity of dataset's rows.
@@ -45,5 +46,5 @@ menu_dataframe = pd.DataFrame(menu_dictionary);
 """ menu_dataframe.rename(columns={"Available" : "Product-Status"}, inplace=True);
 print(menu_dataframe) """
 #For RENAMING ALL COLUMNS AT ONCE, it's possible to reach the ".columns" property and pass an array of strings.
-menu_dataframe.columns=["Product-Name", "Product-Price", "Product-Status"];
-print(menu_dataframe);
+"""menu_dataframe.columns=["Product-Name", "Product-Price", "Product-Status"];
+print(menu_dataframe);"""
