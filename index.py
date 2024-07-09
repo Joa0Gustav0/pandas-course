@@ -30,7 +30,20 @@ menu_dictionary = {
 }
 menu_dataframe = pd.DataFrame(menu_dictionary);
 
-print(
+"""print(
   "This is the menu:\n", 
   menu_dataframe,
-  f"\nThe menu contains {menu_dataframe.shape[0]} registers and {menu_dataframe.shape[1]} atributes.");
+  f"\nThe menu contains {menu_dataframe.shape[0]} registers and {menu_dataframe.shape[1]} atributes.");"""
+
+#"dataframe.columns" is a property which returns a string array containing the dataframe's columns names. 
+"""print(f"The dataframe's columns are: {"".join(column + "; " for column in menu_dataframe.columns)}");"""
+
+#"dataframe.rename" is a method for RETURNING a new dataframe by renaming an old one.
+""" new_menu_dataframe = menu_dataframe.rename(columns={"Available" : "Product Status"}); """
+""" print(new_menu_dataframe); """
+#"inplace" is a possible parameter for renaming the current dataframe without a new one's creation.
+""" menu_dataframe.rename(columns={"Available" : "Product-Status"}, inplace=True);
+print(menu_dataframe) """
+#For RENAMING ALL COLUMNS AT ONCE, it's possible to reach the ".columns" property and pass an array of strings.
+menu_dataframe.columns=["Product-Name", "Product-Price", "Product-Status"];
+print(menu_dataframe);
