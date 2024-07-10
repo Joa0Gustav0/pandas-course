@@ -1,3 +1,5 @@
+import os;
+
 #Since Pandas is a library, it's necessary to import it.
 import pandas as pd;
 
@@ -5,18 +7,18 @@ import pandas as pd;
 
 #Then, we read our csv, excel and any files ==> pd.read_x("filepath", sep="separator_type")
 #By default the csv separator type is a comma ",".  
-worksheet = pd.read_csv("./worksheets/GasPricesinBrazil_2004-2019.csv", sep=";");
+dataset = pd.read_csv(os.getcwd() + "/worksheets-datasets/GasPricesinBrazil_2004-2019.csv", sep=";");
 
 #".head(n)" is a function for RETURNING a certain quantity of dataset's rows.
-some_rows = worksheet.head(5);
+some_rows = dataset.head(5);
 
 #".info()" is a function for PRINTING the dataset's compostion information.
-#informations = worksheet.info();
+#informations = dataset.info();
 
 #EXPLORING AND CONSTRUCTING A DATAFRAME 💡
 
 #".shape()" is a property which contains the dataframe's dimensions (size).
-dataframe_dimensions = worksheet.shape;
+dataframe_dimensions = dataset.shape;
 
 """print(
   "This dataset contains {} rows and {} columns.".format(dataframe_dimensions[0], dataframe_dimensions[1])
@@ -48,3 +50,37 @@ print(menu_dataframe) """
 #For RENAMING ALL COLUMNS AT ONCE, it's possible to reach the ".columns" property and pass an array of strings.
 """menu_dataframe.columns=["Product-Name", "Product-Price", "Product-Status"];
 print(menu_dataframe);"""
+
+#KNOWING A LITTLE ABOUT SERIES 💡
+#A serie is an uni-dimensional array containing the data that composes a DATA ROW or DATA COLUMN.
+
+#==> DATA COLUMNS <==
+#For selecting a single COLUMN from a dataframe is possible to select it by like reffering to a index in a python dictionary (Data frames can be constructed using python dictionaries.).
+""" print(dataset["ESTADO"])
+print(dataset.get("ESTADO")); """
+
+#Also, a single column can be selected like a property (It just work for non spaced name with no accent and no special characters).
+""" print(dataset.ESTADO); """
+
+#==>DATA ROWS<==
+#"dataset.iloc[n]" (Index Locator) is a property for selecting a single ROW by it's index.
+""" print(dataset.iloc[3]); """
+
+#CONSTRUCTING A SERIES 💡
+#A series can be constructed by passing a list of elements.
+grade_one = 6.87;
+grade_two = 7;
+grade_three = 8.5;
+average_grade = (grade_one + grade_two + grade_three) / 3;
+
+series_data = [grade_one, grade_two, grade_three, average_grade]
+
+simple_series = pd.Series(series_data);
+""" print(simple_series) """
+
+complex_series = pd.Series(
+  series_data, 
+  index=["grade 1", "grade 2", "grade 3", "average"], 
+  name="Student's Grades")
+
+print(complex_series);

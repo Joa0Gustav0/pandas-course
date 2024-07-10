@@ -1,7 +1,8 @@
+import os;
 import pandas as pd;
 
 dataset = pd.read_csv(
-  "C:/Users/guga6/OneDrive/Documentos/studies/pandas-course/worksheets-datasets/aliexpress_pet_supplies.csv"
+  os.getcwd() + "/worksheets-datasets/aliexpress_pet_supplies.csv"
 );
 
 """ print(dataset.head(5)); """
