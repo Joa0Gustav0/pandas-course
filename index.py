@@ -68,7 +68,7 @@ print(dataset.get("ESTADO")); """
 
 #CONSTRUCTING A SERIES 💡
 #A series can be constructed by passing a list of elements.
-grade_one = 6.87;
+""" grade_one = 6.87;
 grade_two = 7;
 grade_three = 8.5;
 average_grade = (grade_one + grade_two + grade_three) / 3;
@@ -76,11 +76,11 @@ average_grade = (grade_one + grade_two + grade_three) / 3;
 series_data = [grade_one, grade_two, grade_three, average_grade]
 
 simple_series = pd.Series(series_data);
-""" print(simple_series) """
+print(simple_series)
 
 complex_series = pd.Series(
   series_data, 
   index=["grade 1", "grade 2", "grade 3", "average"], 
   name="Student's Grades")
 
-print(complex_series);
+print(complex_series); """
