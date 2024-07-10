@@ -71,3 +71,22 @@ print(filtered_df["REGIÃO"].unique()); """
 """ adversative_selection = ~(dataframe["REGIÃO"] == "SUDESTE") & ~(dataframe["REGIÃO"] == "NORDESTE");
 filtered_df = dataframe[adversative_selection];
 print(filtered_df["REGIÃO"].unique()); """
+
+#OPTIMIZING FILTERING 💡
+
+#Using the previous knowledge: 
+#While we are executing a filtering using more than one condition, pandas reads the WHOLE dataframe for each condition (3 Conditions => Pandas read the WHOLE dataframe 3 times).
+#But, it's possible to be optimized.
+
+#Firstly and inevitablely, the WHOLE original dataframe is readed.
+#Then, only the registers where the state feature is equal to SERGIPE is selected.
+state_selection = dataframe["ESTADO"] == "SERGIPE";
+sergipe_registers = dataframe[state_selection];
+
+#Next, only the dataframe filtered through the ESTADO column is readed.
+#It prevents the original dataframe from being fully readed again.
+price_selection = sergipe_registers["PREÇO MÉDIO REVENDA"] > 2;
+filtered_df = sergipe_registers[price_selection];
+print(filtered_df.iloc[0])
+
+#This way filtering becomes optimized.
