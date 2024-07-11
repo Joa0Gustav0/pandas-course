@@ -80,13 +80,46 @@ print(filtered_df["REGIÃO"].unique()); """
 
 #Firstly and inevitablely, the WHOLE original dataframe is readed.
 #Then, only the registers where the state feature is equal to SERGIPE is selected.
-state_selection = dataframe["ESTADO"] == "SERGIPE";
-sergipe_registers = dataframe[state_selection];
+""" state_selection = dataframe["ESTADO"] == "SERGIPE";
+sergipe_registers = dataframe[state_selection]; """
 
 #Next, only the dataframe filtered through the ESTADO column is readed.
 #It prevents the original dataframe from being fully readed again.
-price_selection = sergipe_registers["PREÇO MÉDIO REVENDA"] > 2;
+""" price_selection = sergipe_registers["PREÇO MÉDIO REVENDA"] > 2;
 filtered_df = sergipe_registers[price_selection];
-print(filtered_df.iloc[0])
+print(filtered_df.iloc[0]) """
 
 #This way filtering becomes optimized.
+
+#===> INTERESTING CHALLENGES 🤓🔥 <===
+
+#For this challenge, THREE (3) requirements need to be satisfied:
+#=> Only SÃO PAULO OR RIO DE JANEIRO'S gas station;
+#=> Only GASOLINA COMUM as the product;
+#=> Only PREÇO MÉDIO REVENDA greater than 2;
+
+product_selection = dataframe["PRODUTO"] == "GASOLINA COMUM";
+only_gasolina = dataframe[product_selection];
+
+state_selection = (only_gasolina["ESTADO"] == "SAO PAULO") | (only_gasolina["ESTADO"] == "RIO DE JANEIRO");
+only_sp_rj = only_gasolina[state_selection];
+
+price_selection = only_sp_rj["PREÇO MÉDIO REVENDA"] > 2;
+filtered_dataframe = only_sp_rj[price_selection].reset_index(drop=True);
+
+""" print(filtered_dataframe); """
+
+#===> CHALLENGE 2 🔥 <===
+
+#Now, use previous challenge's result for filtering it by the ANO.
+#=> Only 2008, 2010 or 2012;
+
+""" year_selection = (filtered_dataframe["ANO"] == 2008) | (filtered_dataframe["ANO"] == 2010) | (filtered_dataframe["ANO"] == 2012) """
+
+#".isin" is a possible function for be used instead of "dataframe[COLUMN] in [values]" 💡
+""" year_selection = filtered_dataframe["ANO"].isin([2008, 2010, 2012]); """
+
+""" years_list = [2008, 2010, 2012];
+filtered_by_year_df = filtered_dataframe.query("ANO in @years_list"); """
+
+""" print(filtered_by_year_df["ANO"].unique()); """
